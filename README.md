@@ -13,3 +13,47 @@
 - Video : OBS, Win10 Video Editor
 
 ---
+Tasks
+~~~~
+URP
+
+Shader Graph
+
+PostProcessing
+
+Game States / Flow
+
+UI / Scenes
+
+Audio Mgr
+
+Grid/Tile based level
+
+Multiple Level
+
+Player Controller
+
+Events / Actions 
++ Logger
+
+Scriptable Obj
+
+Observer Pattern
+
+Command Pattern
+
+CutScene
+Cinemachine + Timeline
+
+Loading Progressive
+
+VFX
+
+Multiplayer / Coop
+- WSAD Vs Arrow Keys
+
+Bottom UI 
+- a bar with various commands 
+
+ASCII Shader
+

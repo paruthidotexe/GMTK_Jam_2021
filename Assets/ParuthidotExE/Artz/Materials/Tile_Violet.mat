@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Floor_Blue
+  m_Name: Tile_Violet
   m_Shader: {fileID: -6465566751694194690, guid: 18666e272d4b5724fb2ef75eed9bc8cb, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -94,9 +94,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - BorderWidth: 1
+    - BorderWidth: 2
     - Noise: 0
-    - NoiseSpeed: 10
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -124,8 +123,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - BorderColor: {r: 0, g: 0.12549016, b: 0.41568625, a: 1}
-    - TileColor: {r: 0, g: 0.503916, b: 1, a: 1}
+    - BorderColor: {r: 1, g: 1, b: 0.627451, a: 1}
+    - TileColor: {r: 0.4509804, g: 0.34901962, b: 0.7372549, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

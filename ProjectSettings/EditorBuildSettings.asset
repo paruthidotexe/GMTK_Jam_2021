@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/ParuthidotExE/Scenes/MainMenu.unity
+    guid: 30c6e79d83f54c045a008ddc70628257
+  - enabled: 1
     path: Assets/ParuthidotExE/Scenes/InGame.unity
     guid: 6fb6c311c4cd981468060e5c1e0ad590
   m_configObjects: {}
