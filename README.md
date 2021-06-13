@@ -27,10 +27,6 @@ UI / Scenes
 
 Audio Mgr
 
-Grid/Tile based level
-
-Multiple Level
-
 Player Controller
 
 Events / Actions 
@@ -45,15 +41,31 @@ Command Pattern
 CutScene
 Cinemachine + Timeline
 
+Grid/Tile based level
+
+Multiple Levels
+
 Loading Progressive
 
 VFX
 
+Tile based Movement
+Tile Color changes on walking
+? Grey to Blue
+? Hue Shift
+? Saturaion Shift
+Level tile animation
+
 Multiplayer / Coop
 - WSAD Vs Arrow Keys
+- SplitScreen
 
 Bottom UI 
 - a bar with various commands 
 
 ASCII Shader
+
+Credits
+SwitchPlayer sfx : https://hitrison.itch.io/menu-sfx-pack
+Font : 
 

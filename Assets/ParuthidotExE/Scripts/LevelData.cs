@@ -21,6 +21,12 @@ public class LevelData : MonoBehaviour
 
 public class TileData 
 {
+
+
+
+
+
+
     public TileData()
     {
 

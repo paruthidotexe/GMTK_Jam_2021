@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ParuthidotExE/Scenes/InGame.unity
     guid: 6fb6c311c4cd981468060e5c1e0ad590
+  - enabled: 1
+    path: Assets/ParuthidotExE/Scenes/GameOver.unity
+    guid: 9ece8ba58b274824b9001d3bcd831a9f
   m_configObjects: {}
