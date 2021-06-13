@@ -29,6 +29,14 @@ Audio Mgr
 
 Player Controller
 
+Game Elements
+Holes
+Blocker Cubes 
+- use this to sync movement
+Push obj
+Pull obj
+
+
 Events / Actions 
 + Logger
 
@@ -69,3 +77,6 @@ Credits
 SwitchPlayer sfx : https://hitrison.itch.io/menu-sfx-pack
 Font : 
 
+
+Bugs 
+Singleton + Level change

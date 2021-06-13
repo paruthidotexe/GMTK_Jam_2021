@@ -2,8 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SFXValues
+{
+    SFX_Click,
+    SFX_Ok,
+    SFX_Cancel,
+    SFX_PopUps,
+    SFX_PickUps,
+    SFX_Move,
+    SFX_Switch,
+}
+
 public class AudioMgr : MonoBehaviour
 {
+
     public List<AudioSource> musicAudioSrcList;
     public List<AudioSource> sfxAudioSrcList;
     int musicChannel = 0;
@@ -19,15 +31,20 @@ public class AudioMgr : MonoBehaviour
 
     public Dictionary<SFXValues, AudioClip> SFXValueMap;
 
-    public enum SFXValues
+
+
+    public static AudioMgr Inst;
+
+    void Awake()
     {
-        SFX_Click,
-        SFX_Ok,
-        SFX_Cancel,
-        SFX_PopUps,
-        SFX_PickUps,
-        SFX_Move,
-        SFX_Switch,
+        if (Inst == null)
+        {
+            Inst = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()
@@ -42,7 +59,7 @@ public class AudioMgr : MonoBehaviour
     }
 
 
-    void OnPlaySFX(SFXValues curSFXValue)
+    public void OnPlaySFX(SFXValues curSFXValue)
     {
         sfxChannel++;
         if (sfxChannel >= sfxAudioSrcList.Count)
@@ -53,7 +70,7 @@ public class AudioMgr : MonoBehaviour
         sfxAudioSrcList[sfxChannel].Play();
     }
 
-    void OnPlayMusic()
+    public void OnPlayMusic()
     {
         musicChannel = 0;
         //musicAudioSrcList[musicIndex].clip;
@@ -66,7 +83,7 @@ public class AudioMgr : MonoBehaviour
         OnPlayMusic();
     }
 
-    void OnMute()
+    public void OnMute()
     {
         musicAudioSrcList[0].mute = true;
         for (int i = 0; i < sfxAudioSrcList.Count; i++)
@@ -74,7 +91,7 @@ public class AudioMgr : MonoBehaviour
     }
 
 
-    void OnUnmute()
+    public void OnUnmute()
     {
         musicAudioSrcList[0].mute = false;
         for (int i = 0; i < sfxAudioSrcList.Count; i++)
