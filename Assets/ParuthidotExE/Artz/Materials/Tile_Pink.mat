@@ -94,8 +94,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - BorderWidth: 2
+    - BorderWidth: 1
     - Noise: 0
+    - NoiseSpeed: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1

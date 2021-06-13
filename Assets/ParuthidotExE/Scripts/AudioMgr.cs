@@ -15,7 +15,6 @@ public enum SFXValues
 
 public class AudioMgr : MonoBehaviour
 {
-
     public List<AudioSource> musicAudioSrcList;
     public List<AudioSource> sfxAudioSrcList;
     int musicChannel = 0;
@@ -30,8 +29,6 @@ public class AudioMgr : MonoBehaviour
     public AudioClip Clip_Switch;
 
     public Dictionary<SFXValues, AudioClip> SFXValueMap;
-
-
 
     public static AudioMgr Inst;
 

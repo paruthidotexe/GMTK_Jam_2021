@@ -36,7 +36,6 @@ Blocker Cubes
 Push obj
 Pull obj
 
-
 Events / Actions 
 + Logger
 
@@ -76,7 +75,6 @@ ASCII Shader
 Credits
 SwitchPlayer sfx : https://hitrison.itch.io/menu-sfx-pack
 Font : 
-
 
 Bugs 
 Singleton + Level change
