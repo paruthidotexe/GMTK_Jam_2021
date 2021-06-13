@@ -390,6 +390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Particles_Pink
       objectReference: {fileID: 0}
+    - target: {fileID: 4409201576118266853, guid: 3f2fd6cfca2785c4ab0163997f0795ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f2fd6cfca2785c4ab0163997f0795ef, type: 3}
 --- !u!1 &460329067
@@ -1370,6 +1374,10 @@ PrefabInstance:
     - target: {fileID: 4699345403612727741, guid: c1b9f420bdcde8744a919ceea3c664db, type: 3}
       propertyPath: m_Name
       value: Particles_Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699345403612727741, guid: c1b9f420bdcde8744a919ceea3c664db, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b9f420bdcde8744a919ceea3c664db, type: 3}
@@ -3132,7 +3140,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -3159,7 +3167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2119502378
 MonoBehaviour:
   m_ObjectHideFlags: 0
