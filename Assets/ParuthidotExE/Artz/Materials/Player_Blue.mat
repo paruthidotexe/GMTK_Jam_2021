@@ -95,7 +95,7 @@ Material:
     m_Ints: []
     m_Floats:
     - BorderWidth: 2
-    - Noise: 0
+    - Noise: 1
     - NoiseSpeed: 1
     - _AlphaClip: 0
     - _Blend: 0

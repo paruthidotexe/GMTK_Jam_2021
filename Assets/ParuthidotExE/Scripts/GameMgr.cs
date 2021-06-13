@@ -216,7 +216,6 @@ public class GameMgr : MonoBehaviour
     }
 
 
-
     public void OnMoveAction(Vector3 direction)
     {
         Debug.Log("OnMove :" + direction);
@@ -224,7 +223,7 @@ public class GameMgr : MonoBehaviour
         {
             GlobalData.moves++;
             playerPos.x += (int)direction.x;
-            playerPos.y += (int)direction.y;
+            playerPos.y += (int)direction.z;
             Player_Blue.transform.position += direction;
             Player_Pink.transform.position += -direction;
             Debug.Log(playerPos + " vs " + doorPos);
