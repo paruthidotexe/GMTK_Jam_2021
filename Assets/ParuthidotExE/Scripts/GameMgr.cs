@@ -7,23 +7,14 @@ using TMPro;
 
 public class GameMgr : MonoBehaviour
 {
-    // Prefabs
-    public GameObject Tile_Blue_Prefab;
-    public GameObject Tile_Pink_Prefab;
-    public GameObject Wall_Blue_Prefab;
-    public GameObject Wall_Pink_Prefab;
-    public GameObject Door_Blue_Prefab;
-    public GameObject Door_Pink_Prefab;
-    // LevelRoot
-    public GameObject LevelMap;
-    public GameObject Blue_LevelMap;
-    public GameObject Pink_LevelMap;
+    public GameObject Player_Blue_Obj;
+    public GameObject Player_Pink_Obj;
 
-    public GameObject Player_Blue;
-    public GameObject Player_Pink;
+    Player playerBlue;
+    Player playerPink;
 
-    // Level Tiles 0 = hole, 1 = floor, 2,3,4..9 = Wall height, 10 = Door, ?128 = player
-    int[,] levelTiles = new int[12, 6];
+    public LevelMgr levelMgr;
+
     Vector2Int playerPos = Vector2Int.one;// j,i
     Vector2Int doorPos = Vector2Int.one;// j,i
 
@@ -39,7 +30,6 @@ public class GameMgr : MonoBehaviour
         GameOver
     };
     GameStates gameState;
-    LevelData levelData;
 
     private void OnEnable()
     {
@@ -55,164 +45,42 @@ public class GameMgr : MonoBehaviour
     {
         gameState = GameStates.InGame;
         GlobalData.OnInit();
-        InitLevel();
-        CreateLevel();
+        levelMgr.LoadLevel();
         scoreText.text = "Moves : 0 Time : 0 Seconds";
+        playerBlue = Player_Blue_Obj.GetComponent<Player>();
+        playerPink = Player_Pink_Obj.GetComponent<Player>();
     }
 
 
     void Update()
     {
         GlobalData.timePlayed += Time.deltaTime;
-        if (playerPos == doorPos)
-        {
-            OnGameOver();
-        }
+        //if (playerPos == doorPos)
+        //{
+        //    OnGameOver();
+        //}
         scoreText.text = "Moves : " + GlobalData.moves + " Time : " + (int)GlobalData.timePlayed + " Seconds";
     }
 
 
-    void CreateLevel()
-    {
-        Vector3 offset = new Vector3(-0.5f, 0, 0.5f);
-        Vector3 origin = new Vector3(0, 0, 0);
-
-        for (int i = 0; i < 12; i++)
-        {
-            for (int j = 0; j < 6; j++)
-            {
-                // player
-                if (levelTiles[i, j] == 128)
-                {
-                    Player_Blue.transform.position = new Vector3(i, 0.2f, j);
-                    Player_Blue.transform.parent = Blue_LevelMap.transform;
-                    playerPos.x = i;
-                    playerPos.y = j;
-                }
-                // door
-                else if (levelTiles[i, j] == 10)
-                {
-                    GameObject curObj = GameObject.Instantiate(Door_Blue_Prefab);
-                    curObj.transform.position = new Vector3(i, 0.2f, j);
-                    curObj.transform.parent = Blue_LevelMap.transform;
-                    doorPos.x = i;
-                    doorPos.y = j;
-                }
-                else
-                {
-                    if (levelTiles[i, j] >= 3)
-                    {
-                        GameObject curObj = GameObject.Instantiate(Wall_Blue_Prefab);
-                        curObj.transform.position = new Vector3(i, 1.2f, j);
-                        curObj.transform.parent = Blue_LevelMap.transform;
-                    }
-                    if (levelTiles[i, j] >= 2)
-                    {
-                        GameObject curObj = GameObject.Instantiate(Wall_Blue_Prefab);
-                        curObj.transform.position = new Vector3(i, 0.2f, j);
-                        curObj.transform.parent = Blue_LevelMap.transform;
-                    }
-                }
-                if (levelTiles[i, j] >= 1)
-                {
-                    GameObject curObj = GameObject.Instantiate(Tile_Blue_Prefab);
-                    curObj.transform.position = new Vector3(i, 0, j);
-                    curObj.transform.parent = Blue_LevelMap.transform;
-                }
-                if (levelTiles[i, j] == 0)
-                {
-                    GameObject curObj = GameObject.Instantiate(Tile_Pink_Prefab);
-                    curObj.transform.position = new Vector3(i, 0, j);
-                    curObj.transform.parent = Blue_LevelMap.transform;
-                }
-            }
-        }
-        Blue_LevelMap.transform.position = new Vector3(-5, -0.2f, -5);
-        Blue_LevelMap.transform.parent = LevelMap.transform;
-
-        CreatePinkLevel();
-    }
-
-    void CreatePinkLevel()
-    {
-        Vector3 offset = new Vector3(-0.5f, 0, 0.5f);
-        Vector3 origin = new Vector3(0, 0, 0);
-
-        for (int i = 0; i < 12; i++)
-        {
-            for (int j = 0; j < 6; j++)
-            {
-                // player
-                if (levelTiles[i, j] == 128)
-                {
-                    Player_Pink.transform.position = new Vector3(i, 0.2f, j);
-                    Player_Pink.transform.parent = Pink_LevelMap.transform;
-                    playerPos.x = i;
-                    playerPos.y = j;
-                }
-                // door
-                else if (levelTiles[i, j] == 10)
-                {
-                    GameObject curObj = GameObject.Instantiate(Door_Pink_Prefab);
-                    curObj.transform.position = new Vector3(i, 0.2f, j);
-                    curObj.transform.parent = Pink_LevelMap.transform;
-                    doorPos.x = i;
-                    doorPos.y = j;
-                }
-                else
-                {
-                    if (levelTiles[i, j] >= 3)
-                    {
-                        GameObject curObj = GameObject.Instantiate(Wall_Pink_Prefab);
-                        curObj.transform.position = new Vector3(i, 1.2f, j);
-                        curObj.transform.parent = Pink_LevelMap.transform;
-                    }
-                    if (levelTiles[i, j] >= 2)
-                    {
-                        GameObject curObj = GameObject.Instantiate(Wall_Pink_Prefab);
-                        curObj.transform.position = new Vector3(i, 0.2f, j);
-                        curObj.transform.parent = Pink_LevelMap.transform;
-                    }
-                }
-                if (levelTiles[i, j] >= 1)
-                {
-                    GameObject curObj = GameObject.Instantiate(Tile_Pink_Prefab);
-                    curObj.transform.position = new Vector3(i, 0, j);
-                    curObj.transform.parent = Pink_LevelMap.transform;
-                }
-                if (levelTiles[i, j] == 0)
-                {
-                    GameObject curObj = GameObject.Instantiate(Tile_Blue_Prefab);
-                    curObj.transform.position = new Vector3(i, 0, j);
-                    curObj.transform.parent = Pink_LevelMap.transform;
-                }
-            }
-        }
-        Pink_LevelMap.transform.position = new Vector3(6, -0.2f, 6);
-        Pink_LevelMap.transform.Rotate(Vector3.up, 180);
-        Pink_LevelMap.transform.parent = LevelMap.transform;
-    }
-
-    void InitLevel()
-    {
-        for (int i = 0; i < 12; i++)
-        {
-            for (int j = 0; j < 6; j++)
-            {
-                levelTiles[i, j] = Random.Range(0, 2);
-            }
-        }
-
-        levelData = GlobalData.GetLevel();
-
-        levelTiles = levelData.levelTiles;
-    }
-
     // UI
-    public void OnMenuButton()
+    public void OnPauseButton()
     {
         SceneManager.LoadScene("MainMenu");
         //OnGameOver();
+    }
+
+
+    public void OnRestartButton()
+    {
+        SceneManager.LoadScene("InGame");
+        //OnGameOver();
+    }
+
+
+    public void OnNextLevel()
+    {
+        levelMgr.LoadNextLevel();
     }
 
 
@@ -224,8 +92,10 @@ public class GameMgr : MonoBehaviour
             GlobalData.moves++;
             playerPos.x += (int)direction.x;
             playerPos.y += (int)direction.z;
-            Player_Blue.transform.position += direction;
-            Player_Pink.transform.position += -direction;
+            playerBlue.OnMoveAction(direction);
+            playerPink.OnMoveAction(-direction);
+            //Player_Blue_Obj.transform.position += direction;
+            //Player_Pink_Obj.transform.position += -direction;
             Debug.Log(playerPos + " vs " + doorPos);
         }
     }

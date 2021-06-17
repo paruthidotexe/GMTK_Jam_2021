@@ -10,17 +10,16 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDir = Vector3.zero;
 
     public delegate void OnMove(Vector3 moveDir);
-    public static event OnMove OnMoveAction; 
+    public static event OnMove OnMoveAction;
 
     void Start()
     {
-        AudioMgr.Inst.OnPlaySFX(SFXValues.SFX_Click);
     }
 
 
     void Update()
     {
-        
+
     }
 
 
