@@ -46,6 +46,7 @@ public class GridData
     public int width = 8;
     public int height = 8;
     public int length = 8;
+    public float cellSize = 1.0f;
 
     public int gridAxis = 2;// 1 =  XY; 2 = XZ 
     public int[,] tiles;
@@ -99,6 +100,36 @@ public class GridData
         }
         Debug.Log(gridStr);
         return gridStr;
+    }
+
+
+    public void SetTileValue(int x, int y, int value)
+    {
+        tiles[x, y] = value;
+    }
+
+
+    public int GetTileValue(int x, int y)
+    {
+        return tiles[x, y];
+    }
+
+
+    public void SetTileValue(Vector3 worldPos, int value)
+    {
+
+    }
+
+
+    public int GetTileValue(Vector3 worldPos)
+    {
+        return 0;
+    }
+
+
+    public Vector3 GetWorldPos()
+    {
+        return Vector3.zero;
     }
 
 

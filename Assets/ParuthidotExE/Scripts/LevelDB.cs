@@ -139,6 +139,8 @@ public class LevelDB
                 gridData.tiles[i, j] = Random.Range(0, 3);
             }
         }
+        gridData.tiles[Random.Range(0, gridData.tiles.GetLength(0)), Random.Range(0, gridData.tiles.GetLength(1))] = 128;
+        gridData.tiles[Random.Range(0, gridData.tiles.GetLength(0)), Random.Range(0, gridData.tiles.GetLength(1))] = 10;
         return gridData;
     }
 

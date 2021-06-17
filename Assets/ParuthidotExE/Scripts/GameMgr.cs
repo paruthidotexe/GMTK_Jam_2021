@@ -7,19 +7,21 @@ using TMPro;
 
 public class GameMgr : MonoBehaviour
 {
+    // player
     public GameObject Player_Blue_Obj;
     public GameObject Player_Pink_Obj;
-
     Player playerBlue;
     Player playerPink;
 
+    // level
     public LevelMgr levelMgr;
+    List<string> commandSequnce = new List<string>();
+    List<Vector3> positionStore = new List<Vector3>();
 
-    Vector2Int playerPos = Vector2Int.one;// j,i
-    Vector2Int doorPos = Vector2Int.one;// j,i
-
+    // UI
     public TMP_Text scoreText;
 
+    // Game states
     public enum GameStates
     {
         None = 0,
@@ -36,10 +38,12 @@ public class GameMgr : MonoBehaviour
         PlayerController.OnMoveAction += OnMoveAction;
     }
 
+
     private void OnDisable()
     {
         PlayerController.OnMoveAction -= OnMoveAction;
     }
+
 
     void Start()
     {
@@ -55,10 +59,6 @@ public class GameMgr : MonoBehaviour
     void Update()
     {
         GlobalData.timePlayed += Time.deltaTime;
-        //if (playerPos == doorPos)
-        //{
-        //    OnGameOver();
-        //}
         scoreText.text = "Moves : " + GlobalData.moves + " Time : " + (int)GlobalData.timePlayed + " Seconds";
     }
 
@@ -83,6 +83,16 @@ public class GameMgr : MonoBehaviour
         levelMgr.LoadNextLevel();
     }
 
+    public void OnReverse()
+    {
+        if (positionStore.Count <= 0)
+            return;
+        Vector3 newDir = positionStore[positionStore.Count - 1];
+        OnUndoAction(-newDir);
+        positionStore.RemoveAt(positionStore.Count - 1);
+        commandSequnce.RemoveAt(commandSequnce.Count - 1);
+    }
+
 
     public void OnMoveAction(Vector3 direction)
     {
@@ -90,25 +100,42 @@ public class GameMgr : MonoBehaviour
         if (IsValidMove(direction))
         {
             GlobalData.moves++;
-            playerPos.x += (int)direction.x;
-            playerPos.y += (int)direction.z;
             playerBlue.OnMoveAction(direction);
             playerPink.OnMoveAction(-direction);
-            //Player_Blue_Obj.transform.position += direction;
-            //Player_Pink_Obj.transform.position += -direction;
-            Debug.Log(playerPos + " vs " + doorPos);
+            commandSequnce.Add(direction.ToString());
+            positionStore.Add(direction);
+            string commandSequnceStr = "";
+            foreach (string commandStr in commandSequnce)
+            {
+                commandSequnceStr += " > " + commandStr;
+            }
+            Debug.Log(commandSequnceStr);
         }
     }
+
+
+    public void OnUndoAction(Vector3 direction)
+    {
+        Debug.Log("OnUndoAction :" + direction);
+
+        playerBlue.OnMoveAction(direction);
+        playerPink.OnMoveAction(-direction);
+
+    }
+
+
 
     bool IsValidMove(Vector3 direction)
     {
         return true;
     }
 
+
     void OnGameOver()
     {
         SceneManager.LoadScene("GameOver");
     }
+
 
     public void OnMoveUIAction(int dir)
     {
