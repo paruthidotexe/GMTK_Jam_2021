@@ -1,5 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+///-----------------------------------------------------------------------------
+///
+/// GameOverScreen
+/// 
+/// GameOverScreen UI
+///
+///-----------------------------------------------------------------------------
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,13 +17,13 @@ public class GameOverScreen : MonoBehaviour
 
     void Start()
     {
-        scoreText.text = "Moves : " + GlobalData.moves + "\n Time : " + (int)GlobalData.timePlayed + " Seconds";
+        scoreText.text = "Moves : " + GlobalData.moves + "\nTime : " + (int)GlobalData.timePlayed + " Seconds" + "\nScore : " + (int)(GlobalData.timePlayed * 1.5);
     }
 
 
     void Update()
     {
-        
+
     }
 
 

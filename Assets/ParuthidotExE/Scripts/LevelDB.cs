@@ -1,3 +1,11 @@
+///-----------------------------------------------------------------------------
+///
+/// LevelDB
+/// 
+/// Saved levels
+///
+///-----------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +24,10 @@ public class LevelDB
     {
         GridData gridData = new GridData(width, height);
         int randomVal = Random.Range(0, 5);
+        GlobalData.levelNo++;
+        if (GlobalData.levelNo > 4)
+            GlobalData.levelNo = 0;
+        randomVal = GlobalData.levelNo;
 
         gridData.tiles = new int[,]
         {
@@ -143,6 +155,7 @@ public class LevelDB
         gridData.tiles[Random.Range(0, gridData.tiles.GetLength(0)), Random.Range(0, gridData.tiles.GetLength(1))] = 10;
         return gridData;
     }
+
 
 }
 

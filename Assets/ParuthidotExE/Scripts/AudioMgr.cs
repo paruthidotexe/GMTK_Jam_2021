@@ -1,3 +1,13 @@
+///-----------------------------------------------------------------------------
+///
+/// AudioMgr
+/// 
+/// Main Audio manager
+/// Singleton -> change to use scriptable objects "Channels"
+/// Load and unload audio based on level
+/// 
+///-----------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +22,7 @@ public enum SFXValues
     SFX_Move,
     SFX_Switch,
 }
+
 
 public class AudioMgr : GenericSingleton<AudioMgr>
 {
@@ -94,3 +105,4 @@ public class AudioMgr : GenericSingleton<AudioMgr>
     }
 
 }
+

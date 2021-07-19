@@ -1,8 +1,14 @@
-using System.Collections;
+///-----------------------------------------------------------------------------
+///
+/// GameMgr
+/// 
+/// Main game manager
+///
+///-----------------------------------------------------------------------------
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 
 public class GameMgr : MonoBehaviour
@@ -18,8 +24,7 @@ public class GameMgr : MonoBehaviour
     List<string> commandSequnce = new List<string>();
     List<Vector3> positionStore = new List<Vector3>();
 
-    // UI
-    public TMP_Text scoreText;
+    GameTimer gameTimer;
 
     // Game states
     public enum GameStates
@@ -36,21 +41,28 @@ public class GameMgr : MonoBehaviour
     private void OnEnable()
     {
         PlayerController.OnMoveAction += OnMoveAction;
+        HUDScripts.MoveAction += OnMoveAction;
+        HUDScripts.ReverseAction += OnReverse;
+        HUDScripts.NextLevelEvent += OnNextLevel;
     }
 
 
     private void OnDisable()
     {
         PlayerController.OnMoveAction -= OnMoveAction;
+        HUDScripts.MoveAction -= OnMoveAction;
+        HUDScripts.ReverseAction -= OnReverse;
+        HUDScripts.NextLevelEvent -= OnNextLevel;
     }
 
 
     void Start()
     {
+        Random.InitState(128);
         gameState = GameStates.InGame;
         GlobalData.OnInit();
         levelMgr.LoadLevel();
-        scoreText.text = "Moves : 0 Time : 0 Seconds";
+        gameTimer = new GameTimer();
         playerBlue = Player_Blue_Obj.GetComponent<Player>();
         playerPink = Player_Pink_Obj.GetComponent<Player>();
     }
@@ -59,29 +71,18 @@ public class GameMgr : MonoBehaviour
     void Update()
     {
         GlobalData.timePlayed += Time.deltaTime;
-        scoreText.text = "Moves : " + GlobalData.moves + " Time : " + (int)GlobalData.timePlayed + " Seconds";
-    }
-
-
-    // UI
-    public void OnPauseButton()
-    {
-        SceneManager.LoadScene("MainMenu");
-        //OnGameOver();
-    }
-
-
-    public void OnRestartButton()
-    {
-        SceneManager.LoadScene("InGame");
-        //OnGameOver();
+        gameTimer.Update();
     }
 
 
     public void OnNextLevel()
     {
+        commandSequnce.Clear();
+        positionStore.Clear();
         levelMgr.LoadNextLevel();
+        levelMgr.SaveLevel();
     }
+
 
     public void OnReverse()
     {
@@ -96,7 +97,7 @@ public class GameMgr : MonoBehaviour
 
     public void OnMoveAction(Vector3 direction)
     {
-        Debug.Log("OnMove :" + direction);
+        //Debug.Log("OnMove :" + direction);
         if (IsValidMove(direction))
         {
             GlobalData.moves++;
@@ -116,17 +117,25 @@ public class GameMgr : MonoBehaviour
 
     public void OnUndoAction(Vector3 direction)
     {
-        Debug.Log("OnUndoAction :" + direction);
-
+        // Debug.Log("OnUndoAction :" + direction);
         playerBlue.OnMoveAction(direction);
         playerPink.OnMoveAction(-direction);
-
     }
-
 
 
     bool IsValidMove(Vector3 direction)
     {
+        RaycastHit raycastHit;
+        if (Physics.Raycast(playerBlue.transform.position + (Vector3.up / 2), direction, out raycastHit, 0.8f))
+        {
+            if (raycastHit.collider.CompareTag("Door"))
+            {
+                OnGameOver();
+            }
+            Debug.Log(raycastHit.collider.name);
+            Debug.DrawRay(playerBlue.transform.position, direction);
+            return false;
+        }
         return true;
     }
 
@@ -137,34 +146,5 @@ public class GameMgr : MonoBehaviour
     }
 
 
-    public void OnMoveUIAction(int dir)
-    {
-        Vector3 moveDir = Vector3.zero;
-        if (dir == 1)
-        {
-            moveDir.x = -1;
-            moveDir.y = 0;
-            moveDir.z = 0;
-        }
-        if (dir == 2)
-        {
-            moveDir.x = 1;
-            moveDir.y = 0;
-            moveDir.z = 0;
-        }
-        if (dir == 3)
-        {
-            moveDir.x = 0;
-            moveDir.y = 0;
-            moveDir.z = 1;
-        }
-        if (dir == 4)
-        {
-            moveDir.x = 0;
-            moveDir.y = 0;
-            moveDir.z = -1;
-        }
-        OnMoveAction(moveDir);
-    }
-
 }
+

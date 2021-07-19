@@ -1,8 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+///-----------------------------------------------------------------------------
+///
+/// GameSettingsData
+/// 
+/// Game Settings data
+///
+///-----------------------------------------------------------------------------
 
-public class GameSettings
+public class GameSettingsData
 {
     public static int maxFPS = 60;
     public static int qualitySetting = 1;// 1 = max
@@ -13,7 +17,7 @@ public class GameSettings
     public static bool isVsync = true;
     public static bool isPostProcessing = true;
 
-    public GameSettings()
+    public GameSettingsData()
     {
 
     }

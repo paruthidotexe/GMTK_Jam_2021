@@ -1,7 +1,14 @@
+///-----------------------------------------------------------------------------
+///
+/// GlobalData
+/// 
+/// Data across scenes / levels
+///
+///-----------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 public class GlobalData
 {
@@ -9,6 +16,8 @@ public class GlobalData
     public static int timePlayedInt = 0;// seconds
     public static int moves = 0;
     public static int score = 0;
+    public static int levelNo = 0;
+
 
     public GlobalData()
     {

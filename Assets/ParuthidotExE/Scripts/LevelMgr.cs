@@ -1,3 +1,12 @@
+///-----------------------------------------------------------------------------
+///
+/// LevelMgr
+/// 
+/// Load level, assets
+/// Generate levels
+///
+///-----------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +41,7 @@ public class LevelMgr : MonoBehaviour
 
     void Start()
     {
+        levelData = new LevelData();
         levelTiles = new int[levelWidth, levelHeight];
     }
 
@@ -44,7 +54,8 @@ public class LevelMgr : MonoBehaviour
 
     public void InitLevel()
     {
-        gridData = LevelDB.GetRandomGridData(levelWidth, levelHeight);
+        gridData = LevelDB.GetGridData(levelWidth, levelHeight);
+        //gridData = LevelDB.GetRandomGridData(levelWidth, levelHeight);
         levelTiles = gridData.tiles;
     }
 
@@ -53,8 +64,8 @@ public class LevelMgr : MonoBehaviour
     {
         CreateBlueLevel();
         CreatePinkLevel();
-        Player_Blue.transform.position = new Vector3(0, 0.2f, 0);
-        Player_Pink.transform.position = new Vector3(1, 0.2f, 1);
+        Player_Blue.transform.position = new Vector3(0, 0.0f, 0);
+        Player_Pink.transform.position = new Vector3(1, 0.0f, 1);
     }
 
 
@@ -77,7 +88,7 @@ public class LevelMgr : MonoBehaviour
                 if (levelTiles[i, j] == 128)
                 {
                     Player_Blue.transform.position = new Vector3(i, 0.2f, j);
-                    Player_Blue.transform.parent = Blue_LevelMap.transform;
+                    //Player_Blue.transform.parent = Blue_LevelMap.transform;
                     playerPos.x = i;
                     playerPos.y = j;
                 }
@@ -144,7 +155,7 @@ public class LevelMgr : MonoBehaviour
                 if (levelTiles[i, j] == 128)
                 {
                     Player_Pink.transform.position = new Vector3(i, 0.2f, j);
-                    Player_Pink.transform.parent = Pink_LevelMap.transform;
+                    //Player_Pink.transform.parent = Pink_LevelMap.transform;
                     playerPos.x = i;
                     playerPos.y = j;
                 }
@@ -202,7 +213,8 @@ public class LevelMgr : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        gridData = LevelDB.GetRandomGridData(levelWidth, levelHeight);
+        gridData = LevelDB.GetGridData(levelWidth, levelHeight);
+        //gridData = LevelDB.GetRandomGridData(levelWidth, levelHeight);
         levelTiles = gridData.tiles;
 
         Debug.Log(levelTiles.GetLength(0));
@@ -210,6 +222,18 @@ public class LevelMgr : MonoBehaviour
         Debug.Log(levelTiles.Length);
 
         LoadLevel();
+    }
+
+
+    public void SaveLevel()
+    {
+        Debug.Log(JsonUtility.ToJson(gridData));
+    }
+
+
+    public void LoadLevelFromJson()
+    {
+
     }
 
 

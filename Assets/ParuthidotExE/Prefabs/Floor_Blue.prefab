@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7403113051592365098}
   - component: {fileID: 3403175040810683121}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,6 +115,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 29bc118587bbf364a8b3b8534dc006f4, type: 3}
       propertyPath: m_Name
       value: Tile_1x1x0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 29bc118587bbf364a8b3b8534dc006f4, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29bc118587bbf364a8b3b8534dc006f4, type: 3}

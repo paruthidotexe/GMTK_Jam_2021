@@ -1,5 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+///-----------------------------------------------------------------------------
+///
+/// FPSCounter
+/// 
+/// FPS Counter & Display in GUI
+///
+///-----------------------------------------------------------------------------
+
 using UnityEngine;
 
 public class FPSCounter : MonoBehaviour

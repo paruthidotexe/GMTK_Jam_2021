@@ -1,5 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+///-----------------------------------------------------------------------------
+///
+/// PlayerController
+/// 
+/// Player Controller with new input systems
+///
+///-----------------------------------------------------------------------------
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     public delegate void OnMove(Vector3 moveDir);
     public static event OnMove OnMoveAction;
+
 
     void Start()
     {
@@ -25,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveInputAction(InputAction.CallbackContext context)
     {
-        //if(context.performed)
+        //if (context.performed)
         //{
         //    //Debug.Log("OnMoveInputAction : " + context.ReadValue<Vector2>());
         //    //Debug.Log(context.ReadValue<Vector3>());
@@ -45,6 +52,7 @@ public class PlayerController : MonoBehaviour
             OnMoveAction(moveDir);
     }
 
+
     public void OnMoveLeftAction(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -59,6 +67,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     public void OnMoveRightAction(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -72,6 +81,7 @@ public class PlayerController : MonoBehaviour
             Raise_OnMoveAction(moveDir);
         }
     }
+
 
     public void OnMoveUpAction(InputAction.CallbackContext context)
     {
@@ -100,4 +110,11 @@ public class PlayerController : MonoBehaviour
             Raise_OnMoveAction(moveDir);
         }
     }
+
 }
+
+// 2do
+// As Scriptable objects class
+// Scriptable events as channel
+//
+

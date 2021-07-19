@@ -1,6 +1,16 @@
+///-----------------------------------------------------------------------------
+///
+/// Player
+/// 
+/// Main Player 
+///
+///-----------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +21,7 @@ public class Player : MonoBehaviour
     float speed = 10;
     float lerpTime = 0;
     bool isAnimationOn = false;
+
     void Start()
     {
 
@@ -39,7 +50,7 @@ public class Player : MonoBehaviour
 
     public void OnMoveAction(Vector3 direction)
     {
-        Debug.Log("OnMove :" + direction);
+        //Debug.Log("OnMove :" + direction);
         startPos = transform.position;
         if (isAnimationOn)
         {
@@ -54,6 +65,22 @@ public class Player : MonoBehaviour
         {
             transform.position += direction;
         }
+    }
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "BottomBoundary")
+        {
+            OnGameOver();
+        }
+    }
+
+
+    void OnGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 
 }
